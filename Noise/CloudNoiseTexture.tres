@@ -1,0 +1,9 @@
+[gd_resource type="NoiseTexture" load_steps=2 format=2]
+
+[ext_resource path="res://Noise/CloudNoise.tres" type="OpenSimplexNoise" id=1]
+
+[resource]
+width = 1024
+height = 1024
+seamless = true
+noise = ExtResource( 1 )

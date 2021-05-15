@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/PTC55F.ttf"
+
+[resource]
+size = 20
+use_mipmaps = true
+extra_spacing_char = 1
+font_data = SubResource( 1 )

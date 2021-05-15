@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://CustomNodes/DragContainer.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.129412, 0.129412, 0.129412, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[node name="DragContainer" type="Popup"]
+margin_right = 306.0
+margin_bottom = 335.0
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WindowGrabber" type="Button" parent="Panel/VBoxContainer"]
+margin_right = 306.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Window"
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Panel/VBoxContainer/WindowGrabber"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
+
+[node name="CloseButton" type="Button" parent="Panel/VBoxContainer/WindowGrabber"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -19.0
+text = "x"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_DragContainer_gui_input"]
+[connection signal="button_down" from="Panel/VBoxContainer/WindowGrabber" to="." method="_on_WindowGrabber_button_down"]
+[connection signal="pressed" from="Panel/VBoxContainer/WindowGrabber/CloseButton" to="." method="_on_CloseButton_pressed"]
