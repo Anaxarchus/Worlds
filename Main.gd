@@ -50,3 +50,8 @@ func _on_LandPaintButton_pressed():
 func _on_OceanPaintButton_pressed():
     $Popups/OceanBiomeColors.show()
     $Popups.node_to_front($Popups/OceanBiomeColors)
+
+
+func _on_Settings_pressed():
+    $Popups/Settings.show()
+    $Popups.node_to_front($Popups/Settings)

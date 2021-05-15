@@ -180,35 +180,6 @@ texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 5
 
-[node name="Spin" type="VBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -196.0
-margin_top = -87.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CheckBox" type="CheckBox" parent="Spin"]
-margin_right = 196.0
-margin_bottom = 41.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-pressed = true
-text = "Spinning"
-align = 1
-
-[node name="SpinBox" type="SpinBox" parent="Spin"]
-margin_top = 45.0
-margin_right = 196.0
-margin_bottom = 87.0
-min_value = 2.0
-step = 0.1
-value = 2.0
-prefix = "Speed"
-
 [node name="Popups" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -219,7 +190,6 @@ __meta__ = {
 }
 
 [node name="WorldGenProperties" parent="Popups" instance=ExtResource( 8 )]
-visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -352.0
@@ -233,7 +203,6 @@ margin_right = 336.0
 margin_bottom = 34.0
 
 [node name="LandBiomeColors" parent="Popups" instance=ExtResource( 8 )]
-visible = false
 margin_left = 16.0
 margin_top = 96.0
 margin_right = 352.0
@@ -259,7 +228,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="OceanBiomeColors" parent="Popups" instance=ExtResource( 8 )]
-visible = false
 margin_left = 352.0
 margin_top = 96.0
 margin_right = 688.0
@@ -284,15 +252,80 @@ margin_bottom = 462.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Settings" parent="Popups" instance=ExtResource( 8 )]
+margin_left = 352.0
+margin_top = 96.0
+margin_right = 688.0
+margin_bottom = 596.0
+window_title = "Settings"
+
+[node name="WindowGrabber" parent="Popups/Settings/Panel/VBoxContainer" index="0"]
+margin_right = 336.0
+margin_bottom = 34.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popups/Settings/Panel/VBoxContainer" index="1"]
+margin_top = 38.0
+margin_right = 336.0
+margin_bottom = 500.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorButtons" type="VBoxContainer" parent="Popups/Settings/Panel/VBoxContainer/ScrollContainer"]
+margin_right = 336.0
+margin_bottom = 462.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Popups/Settings/Panel/VBoxContainer/ScrollContainer/ColorButtons"]
+margin_right = 336.0
+margin_bottom = 32.0
+text = "Spin"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="Popups/Settings/Panel/VBoxContainer/ScrollContainer/ColorButtons"]
+margin_top = 36.0
+margin_right = 336.0
+margin_bottom = 40.0
+
+[node name="Spin" type="VBoxContainer" parent="Popups/Settings/Panel/VBoxContainer/ScrollContainer/ColorButtons"]
+margin_top = 44.0
+margin_right = 336.0
+margin_bottom = 124.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="Popups/Settings/Panel/VBoxContainer/ScrollContainer/ColorButtons/Spin"]
+margin_right = 336.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+pressed = true
+text = "Spinning"
+align = 1
+
+[node name="SpinBox" type="SpinBox" parent="Popups/Settings/Panel/VBoxContainer/ScrollContainer/ColorButtons/Spin"]
+margin_top = 38.0
+margin_right = 336.0
+margin_bottom = 80.0
+min_value = 2.0
+step = 0.1
+value = 2.0
+prefix = "Speed"
+
 [connection signal="pressed" from="HBoxContainer/Creator/HBoxContainer/Left/WorldGenButton" to="." method="_on_WorldGenButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/Creator/HBoxContainer/Left/LandPaintButton" to="." method="_on_LandPaintButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/Creator/HBoxContainer/Left/OceanPaintButton" to="." method="_on_OceanPaintButton_pressed"]
-[connection signal="toggled" from="Spin/CheckBox" to="HBoxContainer/Creator/ViewportContainer/Viewport/Spatial" method="_on_CheckBox_toggled"]
-[connection signal="value_changed" from="Spin/SpinBox" to="HBoxContainer/Creator/ViewportContainer/Viewport/Spatial" method="_on_SpinBox_value_changed"]
+[connection signal="pressed" from="HBoxContainer/Creator/HBoxContainer/Right/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="window_selected" from="Popups/WorldGenProperties" to="Popups" method="_on_WorldGenProperties_window_selected"]
 [connection signal="window_selected" from="Popups/LandBiomeColors" to="Popups" method="_on_BiomeColors_window_selected"]
 [connection signal="window_selected" from="Popups/OceanBiomeColors" to="Popups" method="_on_OceanBiomeColors_window_selected"]
+[connection signal="toggled" from="Popups/Settings/Panel/VBoxContainer/ScrollContainer/ColorButtons/Spin/CheckBox" to="HBoxContainer/Creator/ViewportContainer/Viewport/Spatial" method="_on_CheckBox_toggled"]
+[connection signal="value_changed" from="Popups/Settings/Panel/VBoxContainer/ScrollContainer/ColorButtons/Spin/SpinBox" to="HBoxContainer/Creator/ViewportContainer/Viewport/Spatial" method="_on_SpinBox_value_changed"]
 
 [editable path="Popups/WorldGenProperties"]
 [editable path="Popups/LandBiomeColors"]
 [editable path="Popups/OceanBiomeColors"]
+[editable path="Popups/Settings"]

@@ -14,6 +14,7 @@ expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
 [node name="DragContainer" type="Popup"]
+visible = true
 margin_right = 306.0
 margin_bottom = 335.0
 script = ExtResource( 1 )
