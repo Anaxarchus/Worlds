@@ -26,4 +26,8 @@ func _on_WorldGenProperties_window_selected():
 
 
 func _on_BiomeColors_window_selected():
-    node_to_front($BiomeColors)
+    node_to_front($LandBiomeColors)
+
+
+func _on_OceanBiomeColors_window_selected():
+    node_to_front($OceanBiomeColors)

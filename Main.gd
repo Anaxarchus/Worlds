@@ -40,12 +40,13 @@ func generate_color_buttons():
 func _on_WorldGenButton_pressed():
     $Popups/WorldGenProperties.show()
     $Popups.node_to_front($Popups/WorldGenProperties)
-
-
-func _on_WorldPaintButton_pressed():
-    $Popups/OceanBiomeColors.show()
-    $Popups.node_to_front($Popups/OceanBiomeColors)
     
+    
+func _on_LandPaintButton_pressed():
     $Popups/LandBiomeColors.show()
     $Popups.node_to_front($Popups/LandBiomeColors)
-    
+
+
+func _on_OceanPaintButton_pressed():
+    $Popups/OceanBiomeColors.show()
+    $Popups.node_to_front($Popups/OceanBiomeColors)

@@ -51,9 +51,9 @@ func _on_CloseButton_pressed():
 
 func _on_WindowGrabber_button_down():
     set_state(states.PICKED)
+    emit_signal("window_selected")
 
 
 func _on_DragContainer_gui_input(event):
     if event.is_action_pressed("select"):
-        print("left click event detected on window: ", window_title)
         emit_signal("window_selected")

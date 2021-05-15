@@ -7,6 +7,7 @@
 margin_right = 336.0
 margin_bottom = 66.0
 rect_min_size = Vector2( 0, 66 )
+mouse_filter = 2
 size_flags_horizontal = 3
 script = ExtResource( 2 )
 __meta__ = {
@@ -28,6 +29,7 @@ margin_left = 200.0
 margin_right = 266.0
 margin_bottom = 66.0
 rect_min_size = Vector2( 66, 0 )
+mouse_filter = 2
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6

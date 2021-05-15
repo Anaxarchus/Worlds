@@ -6,7 +6,7 @@
 [ext_resource path="res://Icons/PaintBrushIcon.png" type="Texture" id=4]
 [ext_resource path="res://Icons/ImageIcon.png" type="Texture" id=5]
 [ext_resource path="res://Icons/GearIcon.png" type="Texture" id=6]
-[ext_resource path="res://Icons/SunIcon.png" type="Texture" id=7]
+[ext_resource path="res://Icons/WaterIcon.png" type="Texture" id=7]
 [ext_resource path="res://CustomNodes/DragContainer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://CustomNodes/PopupManager.gd" type="Script" id=9]
 
@@ -128,7 +128,7 @@ texture_normal = ExtResource( 2 )
 expand = true
 stretch_mode = 5
 
-[node name="WorldPaintButton" type="TextureButton" parent="HBoxContainer/Creator/HBoxContainer/Left"]
+[node name="LandPaintButton" type="TextureButton" parent="HBoxContainer/Creator/HBoxContainer/Left"]
 margin_left = 78.0
 margin_right = 152.0
 margin_bottom = 74.0
@@ -139,7 +139,7 @@ texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="LightingButton" type="TextureButton" parent="HBoxContainer/Creator/HBoxContainer/Left"]
+[node name="OceanPaintButton" type="TextureButton" parent="HBoxContainer/Creator/HBoxContainer/Left"]
 margin_left = 156.0
 margin_right = 230.0
 margin_bottom = 74.0
@@ -219,10 +219,13 @@ __meta__ = {
 }
 
 [node name="WorldGenProperties" parent="Popups" instance=ExtResource( 8 )]
-margin_left = 25.0
-margin_top = 90.0
-margin_right = 361.0
-margin_bottom = 590.0
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -352.0
+margin_top = 96.0
+margin_right = -16.0
+margin_bottom = 596.0
 window_title = "World Gen"
 
 [node name="WindowGrabber" parent="Popups/WorldGenProperties/Panel/VBoxContainer" index="0"]
@@ -230,10 +233,11 @@ margin_right = 336.0
 margin_bottom = 34.0
 
 [node name="LandBiomeColors" parent="Popups" instance=ExtResource( 8 )]
-margin_left = 24.5407
-margin_top = 89.668
-margin_right = 360.541
-margin_bottom = 589.668
+visible = false
+margin_left = 16.0
+margin_top = 96.0
+margin_right = 352.0
+margin_bottom = 596.0
 window_title = "Land Colors"
 
 [node name="WindowGrabber" parent="Popups/LandBiomeColors/Panel/VBoxContainer" index="0"]
@@ -255,10 +259,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="OceanBiomeColors" parent="Popups" instance=ExtResource( 8 )]
-margin_left = 24.5407
-margin_top = 89.668
-margin_right = 360.541
-margin_bottom = 589.668
+visible = false
+margin_left = 352.0
+margin_top = 96.0
+margin_right = 688.0
+margin_bottom = 596.0
 window_title = "Ocean Colors"
 
 [node name="WindowGrabber" parent="Popups/OceanBiomeColors/Panel/VBoxContainer" index="0"]
@@ -280,12 +285,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [connection signal="pressed" from="HBoxContainer/Creator/HBoxContainer/Left/WorldGenButton" to="." method="_on_WorldGenButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/Creator/HBoxContainer/Left/WorldPaintButton" to="." method="_on_WorldPaintButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Creator/HBoxContainer/Left/LandPaintButton" to="." method="_on_LandPaintButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Creator/HBoxContainer/Left/OceanPaintButton" to="." method="_on_OceanPaintButton_pressed"]
 [connection signal="toggled" from="Spin/CheckBox" to="HBoxContainer/Creator/ViewportContainer/Viewport/Spatial" method="_on_CheckBox_toggled"]
 [connection signal="value_changed" from="Spin/SpinBox" to="HBoxContainer/Creator/ViewportContainer/Viewport/Spatial" method="_on_SpinBox_value_changed"]
 [connection signal="window_selected" from="Popups/WorldGenProperties" to="Popups" method="_on_WorldGenProperties_window_selected"]
 [connection signal="window_selected" from="Popups/LandBiomeColors" to="Popups" method="_on_BiomeColors_window_selected"]
-[connection signal="window_selected" from="Popups/OceanBiomeColors" to="Popups" method="_on_BiomeColors_window_selected"]
+[connection signal="window_selected" from="Popups/OceanBiomeColors" to="Popups" method="_on_OceanBiomeColors_window_selected"]
 
 [editable path="Popups/WorldGenProperties"]
 [editable path="Popups/LandBiomeColors"]
