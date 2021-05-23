@@ -182,7 +182,7 @@ run/main_scene="res://Creator/CreationScene.tscn"
 boot_splash/image="res://Icons/boot.png"
 boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 1 )
 config/icon="res://Icons/PlanetSprite.png"
-config/windows_native_icon="res://Icons/PlanetSprite.ico"
+config/windows_native_icon="res://Icons/worlds.ico.ico"
 
 [autoload]
 
