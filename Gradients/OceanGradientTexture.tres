@@ -2,7 +2,7 @@
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.449704, 0.48, 0.627219, 0.840237 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.0196078, 0, 0.203922, 1, 0.0235294, 0, 0.388235, 1, 0, 0.0784314, 0.933333, 1, 0, 0.717647, 1, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0.0313726, 0.203922, 1, 0, 0.0784314, 0.388235, 1, 0, 0.0470588, 0.54902, 1, 0, 0.717647, 1, 1 )
 
 [resource]
 gradient = SubResource( 1 )

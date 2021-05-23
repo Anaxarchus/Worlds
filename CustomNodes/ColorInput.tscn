@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+color_picker_mask_color = Color( 0.0431373, 0.145098, 0.235294, 1 )
 
 [node name="Label" type="Label" parent="."]
 margin_right = 196.0

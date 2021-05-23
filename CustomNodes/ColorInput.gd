@@ -9,9 +9,12 @@ var biome:int
 var index:int
 var biome_color:Color setget set_biome_color
 
+var is_ready:bool = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    is_ready = true
     set_color_picker_mask_color(color_picker_mask_color)
     set_color_input_title(color_input_title)
 
@@ -23,7 +26,8 @@ func _ready():
 
 func set_color_picker_mask_color(value:Color):
     color_picker_mask_color = value
-    $TextureRect.self_modulate = value
+    if is_ready:
+        $TextureRect.self_modulate = value
 
 
 func set_color_input_title(value:String):
