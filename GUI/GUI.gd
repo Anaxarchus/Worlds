@@ -6,6 +6,8 @@ signal planet_type_changed(value)
 signal export_sprite(sprite_name, save_path)
 signal cloud_visibility_changed(value)
 
+export(NodePath) var node_atmosphere
+
 var noise_interface = preload("res://GUI/CustomNodes/NoiseInterface/NoiseInterface.tscn")
 var color_interface = preload("res://GUI/CustomNodes/ColorInterface/ColorInterface.tscn")
 
@@ -21,7 +23,11 @@ var shader:VisualShader
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    pass # Replace with function body.
+    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/BottomOut.value = Creator.atmosphere_day_outer
+    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/BottomIn.value = Creator.atmosphere_day_inner
+    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/TopOut.value = Creator.atmosphere_night_outer
+    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/TopIn.value = Creator.atmosphere_night_inner
+    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/Brightness.value = Creator.atmosphere_interior_brightness
 
 
 func configure_for_earth_like():
@@ -95,7 +101,7 @@ func configure_for_rock():
     
     atmosphere_color_map = rock_color.color_map
     emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
-    $TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere.pressed = false
+    $TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere.pressed = true
 
 
 func clear_menus():
@@ -146,3 +152,28 @@ func _on_Clouds_toggled(button_pressed):
 
 func _on_Atmosphere_toggled(button_pressed):
     emit_signal("atmosphere_visibility_changed", button_pressed)
+
+
+func _on_TopOut_value_changed(value):
+    Creator.atmosphere_night_outer = value
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+
+
+func _on_TopIn_value_changed(value):
+    Creator.atmosphere_night_inner = value
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+
+
+func _on_BottomOut_value_changed(value):
+    Creator.atmosphere_day_outer = value
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+
+
+func _on_BottomIn_value_changed(value):
+    Creator.atmosphere_day_inner = value
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+
+
+func _on_Brightness_value_changed(value):
+    Creator.atmosphere_interior_brightness = value
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))

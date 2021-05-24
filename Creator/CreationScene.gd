@@ -44,16 +44,24 @@ func set_atmosphere(value:bool):
 
 
 func set_atmosphere_color(value:Color):
-    var day_1 = value
-    var day_0 = value * 1.1
-    var night_1 = value * .5
-    var night_0 = value * .75
+    var day_1 = value * Creator.atmosphere_day_inner
+    var day_0 = value * Creator.atmosphere_day_outer
+    var night_1 = value * Creator.atmosphere_night_inner
+    var night_0 = value * Creator.atmosphere_night_outer
     node_atmos.set_shader_param("u_day_color1", day_1)
     node_atmos.set_shader_param("u_day_color0", day_0)
     node_atmos.set_shader_param("u_night_color0", night_0)
     node_atmos.set_shader_param("u_night_color1", night_1)
     
-    node_world_env.environment.fog_color = value*1.25
+    var fog_color:Color = value
+    if Creator.atmosphere_interior_brightness == 1.0:
+        fog_color = value
+    elif Creator.atmosphere_interior_brightness > 1.0:
+        fog_color = value.lightened(Creator.atmosphere_interior_brightness-1.0)
+    elif Creator.atmosphere_interior_brightness < 1.0:
+        fog_color = value.darkened(1.0-Creator.atmosphere_interior_brightness)
+        
+    node_world_env.environment.fog_color = fog_color
 
 
 func _on_CheckBox_toggled(button_pressed):
@@ -84,7 +92,7 @@ func _on_GUI_planet_type_changed(value):
         $MeshInstance.set_surface_material(0,material_rocky)
         $CanvasLayer/GUI.configure_for_rock()
         $MeshInstance.rotation.z = 0
-        set_atmosphere(false)
+        set_atmosphere(true)
 
 
 func _on_GUI_atmosphere_color_changed(color):

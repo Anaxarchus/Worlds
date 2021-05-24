@@ -9,6 +9,7 @@ export(float) var value setget set_value
 export(float) var max_value setget set_max_value
 export(float) var min_value setget set_min_value
 export(float) var step setget set_step
+export(String) var tool_tip setget set_tool_tip
 
 var ready:bool = false
 
@@ -20,6 +21,12 @@ func _ready():
     set_min_value(min_value)
     set_max_value(max_value)
     set_step(step)
+    set_tool_tip(tool_tip)
+
+
+func set_tool_tip(val:String):
+    tool_tip = val
+    $Label.hint_tooltip = val
 
 
 func set_title(val:String):

@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Icons/ImageIcon.png" type="Texture" id=2]
+[ext_resource path="res://GUI/CustomNodes/Classes/HSlideAndSpin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GUI/Theme.tres" type="Theme" id=4]
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 4 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -22,25 +25,24 @@ __meta__ = {
 }
 
 [node name="Generation" type="VBoxContainer" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = 33.0
+margin_right = -1.0
+margin_bottom = -1.0
 
 [node name="PlanetType" type="OptionButton" parent="TabContainer/Generation"]
-margin_right = 312.0
-margin_bottom = 20.0
-text = "Earth Like"
+margin_right = 318.0
+margin_bottom = 38.0
+text = "Empty"
 items = [ "Empty", null, false, 0, null, "Earth Like", null, false, 1, null, "Gaseous", null, false, 2, null, "Rocky", null, false, 3, null ]
-selected = 1
+selected = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Generation"]
-margin_top = 24.0
-margin_right = 312.0
-margin_bottom = 764.0
+margin_top = 42.0
+margin_right = 318.0
+margin_bottom = 766.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -49,8 +51,8 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Generation/ScrollContainer"]
-margin_right = 312.0
-margin_bottom = 740.0
+margin_right = 318.0
+margin_bottom = 724.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 54
@@ -59,10 +61,10 @@ custom_constants/separation = 54
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = 33.0
+margin_right = -1.0
+margin_bottom = -1.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Colors"]
 anchor_right = 1.0
@@ -75,19 +77,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Colors/ScrollContainer"]
-margin_right = 312.0
-margin_bottom = 764.0
+margin_right = 318.0
+margin_bottom = 766.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 54
 
 [node name="Options" type="Control" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = 33.0
+margin_right = -1.0
+margin_bottom = -1.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Options"]
 anchor_right = 1.0
@@ -100,8 +103,8 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Options/ScrollContainer"]
-margin_right = 312.0
-margin_bottom = 764.0
+margin_right = 320.0
+margin_bottom = 766.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -118,7 +121,69 @@ margin_bottom = 84.0
 pressed = true
 text = "Atmosphere"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Options/ScrollContainer/VBoxContainer"]
+margin_top = 88.0
+margin_right = 312.0
+margin_bottom = 214.0
+
+[node name="Label" type="Label" parent="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_right = 312.0
+margin_bottom = 14.0
+hint_tooltip = "Settings to modulate average planet color on  various atmosphere components for atmosphere gradient."
+mouse_filter = 1
+text = "Atmosphere Settings"
+align = 1
+
+[node name="TopOut" parent="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 18.0
+margin_right = 312.0
+margin_bottom = 42.0
+title = "Top Outer"
+max_value = 2.0
+min_value = 0.01
+step = 0.01
+tool_tip = "Modulate amount for top most outer portion of Atmosphere "
+
+[node name="TopIn" parent="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_right = 312.0
+title = "Top Inner"
+max_value = 2.0
+min_value = 0.01
+step = 0.01
+tool_tip = "Modulate amount for top most inner portion of Atmosphere "
+
+[node name="BottomOut" parent="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 74.0
+margin_right = 312.0
+margin_bottom = 98.0
+title = "Bottom Outer"
+max_value = 2.0
+min_value = 0.01
+step = 0.01
+tool_tip = "Modulate amount for bottom most outer portion of Atmosphere "
+
+[node name="BottomIn" parent="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 102.0
+margin_right = 312.0
+margin_bottom = 126.0
+title = "Bottom Inner"
+max_value = 2.0
+min_value = 0.01
+step = 0.01
+tool_tip = "Modulate amount for bottom most inner portion of Atmosphere "
+
+[node name="Brightness" parent="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 102.0
+margin_right = 312.0
+margin_bottom = 126.0
+title = "Interior"
+max_value = 2.0
+min_value = 0.01
+step = 0.01
+tool_tip = "Modulate amount for interior brightness  "
+
 [node name="Capture" type="TextureButton" parent="."]
+modulate = Color( 0.235294, 0.203922, 0.247059, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -80.0
@@ -134,4 +199,9 @@ __meta__ = {
 [connection signal="item_selected" from="TabContainer/Generation/PlanetType" to="." method="_on_PlanetType_item_selected"]
 [connection signal="toggled" from="TabContainer/Options/ScrollContainer/VBoxContainer/Clouds" to="." method="_on_Clouds_toggled"]
 [connection signal="toggled" from="TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere" to="." method="_on_Atmosphere_toggled"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/TopOut" to="." method="_on_TopOut_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/TopIn" to="." method="_on_TopIn_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/BottomOut" to="." method="_on_BottomOut_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/BottomIn" to="." method="_on_BottomIn_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/Brightness" to="." method="_on_Brightness_value_changed"]
 [connection signal="pressed" from="Capture" to="." method="_on_Capture_pressed"]
