@@ -3,11 +3,11 @@
 [ext_resource path="res://LandGui.gd" type="Script" id=2]
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://OceanGui.gd" type="Script" id=4]
-[ext_resource path="res://Icons/ImageIcon.png" type="Texture" id=5]
-[ext_resource path="res://Icons/GearIcon.png" type="Texture" id=6]
+[ext_resource path="res://GUI/Icons/ImageIcon.png" type="Texture" id=5]
+[ext_resource path="res://GUI/Icons/GearIcon.png" type="Texture" id=6]
 [ext_resource path="res://WorldGui.gd" type="Script" id=7]
-[ext_resource path="res://CustomNodes/DragContainer.tscn" type="PackedScene" id=8]
-[ext_resource path="res://CustomNodes/PopupManager.gd" type="Script" id=9]
+[ext_resource path="res://GUI/CustomNodesOld/DragContainer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://GUI/CustomNodesOld/PopupManager.gd" type="Script" id=9]
 [ext_resource path="res://Viewp.gd" type="Script" id=10]
 [ext_resource path="res://Effects.gd" type="Script" id=12]
 
@@ -165,7 +165,7 @@ __meta__ = {
 [node name="Planet" type="Control" parent="HBoxContainer/Menu/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 42.0
+margin_top = 12.0
 
 [node name="TabContainer" type="TabContainer" parent="HBoxContainer/Menu/TabContainer/Planet"]
 anchor_right = 1.0
@@ -186,7 +186,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
-margin_top = 43.0
+margin_top = 13.0
 margin_right = -1.0
 margin_bottom = -1.0
 size_flags_horizontal = 3
@@ -196,24 +196,24 @@ script = ExtResource( 2 )
 
 [node name="ColorButtons" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land"]
 margin_right = 334.0
-margin_bottom = 714.0
+margin_bottom = 774.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Noise" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons"]
 margin_right = 334.0
-margin_bottom = 374.0
+margin_bottom = 204.0
 size_flags_horizontal = 3
 custom_constants/separation = 24
 
 [node name="Resolution" type="HBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise"]
 margin_right = 334.0
-margin_bottom = 34.0
+margin_bottom = 14.0
 
 [node name="Label" type="Label" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Resolution"]
-margin_top = 1.0
+margin_top = 6.0
 margin_right = 165.0
-margin_bottom = 33.0
+margin_bottom = 8.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Resolution"
@@ -221,20 +221,20 @@ text = "Resolution"
 [node name="Resolution" type="OptionButton" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Resolution"]
 margin_left = 169.0
 margin_right = 334.0
-margin_bottom = 34.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Low"
 items = [ "Low", null, false, 0, null, "Medium", null, false, 1, null, "High", null, false, 2, null, "Extremely High", null, false, 3, null ]
 selected = 0
 
 [node name="Seed" type="HBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise"]
-margin_top = 58.0
+margin_top = 38.0
 margin_right = 334.0
-margin_bottom = 90.0
+margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Seed"]
 margin_right = 165.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Seed"
@@ -242,18 +242,18 @@ text = "Seed"
 [node name="Seed" type="SpinBox" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Seed"]
 margin_left = 169.0
 margin_right = 334.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 max_value = 1e+07
 
 [node name="Octaves" type="HBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise"]
-margin_top = 114.0
+margin_top = 64.0
 margin_right = 334.0
-margin_bottom = 146.0
+margin_bottom = 66.0
 
 [node name="Label" type="Label" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Octaves"]
 margin_right = 165.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Octaves"
@@ -261,24 +261,24 @@ text = "Octaves"
 [node name="Octaves" type="SpinBox" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Octaves"]
 margin_left = 169.0
 margin_right = 334.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 min_value = 1.0
 max_value = 9.0
 value = 1.0
 
 [node name="Period" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise"]
-margin_top = 170.0
+margin_top = 90.0
 margin_right = 334.0
-margin_bottom = 222.0
+margin_bottom = 112.0
 
 [node name="Period" type="HBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Period"]
 margin_right = 334.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 
 [node name="Label" type="Label" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Period/Period"]
 margin_right = 165.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Period"
@@ -286,7 +286,7 @@ text = "Period"
 [node name="Period" type="SpinBox" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Period/Period"]
 margin_left = 169.0
 margin_right = 334.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 min_value = 0.1
 max_value = 256.0
@@ -294,26 +294,26 @@ step = 0.1
 value = 0.1
 
 [node name="PeriodSlider" type="HSlider" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Period"]
-margin_top = 36.0
+margin_top = 6.0
 margin_right = 334.0
-margin_bottom = 52.0
+margin_bottom = 22.0
 min_value = 0.1
 max_value = 256.0
 step = 0.1
 value = 0.1
 
 [node name="Persistence" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise"]
-margin_top = 246.0
+margin_top = 136.0
 margin_right = 334.0
-margin_bottom = 298.0
+margin_bottom = 158.0
 
 [node name="Persistence" type="HBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Persistence"]
 margin_right = 334.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 
 [node name="Label" type="Label" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Persistence/Persistence"]
 margin_right = 165.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Persistence"
@@ -321,32 +321,32 @@ text = "Persistence"
 [node name="Persistence" type="SpinBox" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Persistence/Persistence"]
 margin_left = 169.0
 margin_right = 334.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.001
 value = 0.5
 
 [node name="PersistenceSlider" type="HSlider" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Persistence"]
-margin_top = 36.0
+margin_top = 6.0
 margin_right = 334.0
-margin_bottom = 52.0
+margin_bottom = 22.0
 max_value = 1.0
 step = 0.001
 value = 0.5
 
 [node name="Lacunarity" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise"]
-margin_top = 322.0
+margin_top = 182.0
 margin_right = 334.0
-margin_bottom = 374.0
+margin_bottom = 204.0
 
 [node name="Lacunarity" type="HBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Lacunarity"]
 margin_right = 334.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 
 [node name="Label" type="Label" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Lacunarity/Lacunarity"]
 margin_right = 165.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Lacunarity"
@@ -354,7 +354,7 @@ text = "Lacunarity"
 [node name="Lacunarity" type="SpinBox" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Lacunarity/Lacunarity"]
 margin_left = 169.0
 margin_right = 334.0
-margin_bottom = 32.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
 min_value = 0.1
 max_value = 4.0
@@ -362,31 +362,31 @@ step = 0.01
 value = 2.0
 
 [node name="LacunaritySlider" type="HSlider" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons/Noise/Lacunarity"]
-margin_top = 36.0
+margin_top = 6.0
 margin_right = 334.0
-margin_bottom = 52.0
+margin_bottom = 22.0
 min_value = 0.1
 max_value = 4.0
 step = 0.01
 value = 2.0
 
 [node name="Label" type="Label" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons"]
-margin_top = 378.0
+margin_top = 208.0
 margin_right = 334.0
-margin_bottom = 410.0
+margin_bottom = 210.0
 text = "Colors:"
 
 [node name="Colors" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Land/ColorButtons"]
-margin_top = 414.0
+margin_top = 214.0
 margin_right = 334.0
-margin_bottom = 414.0
+margin_bottom = 214.0
 
 [node name="Ocean" type="ScrollContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
-margin_top = 43.0
+margin_top = 13.0
 margin_right = -1.0
 margin_bottom = -1.0
 size_flags_horizontal = 3
@@ -396,7 +396,7 @@ script = ExtResource( 4 )
 
 [node name="ColorButtons" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/Ocean"]
 margin_right = 334.0
-margin_bottom = 714.0
+margin_bottom = 774.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -586,7 +586,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
-margin_top = 43.0
+margin_top = 13.0
 margin_right = -1.0
 margin_bottom = -1.0
 size_flags_horizontal = 3
@@ -596,7 +596,7 @@ script = ExtResource( 7 )
 
 [node name="ColorButtons" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Planet/TabContainer/World"]
 margin_right = 334.0
-margin_bottom = 714.0
+margin_bottom = 774.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -796,7 +796,7 @@ value = 2.0
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 42.0
+margin_top = 12.0
 script = ExtResource( 12 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Menu/TabContainer/Effects"]
@@ -808,7 +808,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Menu/TabContainer/Effects/ScrollContainer"]
 margin_right = 336.0
-margin_bottom = 758.0
+margin_bottom = 788.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

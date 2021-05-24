@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/CustomNodes/Classes/NumberEdit.gd" type="Script" id=1]
+
+[node name="NumberEdit" type="LineEdit"]
+margin_left = 35.0
+margin_right = 155.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 120, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="text_changed" from="." to="." method="_on_NumberEdit_text_changed"]

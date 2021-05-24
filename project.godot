@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "HBoxContainer",
+"class": "HSlideAndSpin",
+"language": "GDScript",
+"path": "res://GUI/CustomNodes/Classes/HSlideAndSpin.gd"
+}, {
+"base": "LineEdit",
+"class": "NumberEdit",
+"language": "GDScript",
+"path": "res://GUI/CustomNodes/Classes/NumberEdit.gd"
+}, {
 "base": "VisualShaderNodeCustom",
 "class": "VisualShaderNodeCellularNoise2D",
 "language": "GDScript",
@@ -145,6 +155,8 @@ _global_script_classes=[ {
 "path": "res://addons/visual_shader_node_library/shader_nodes/common/noise/simplex_4d.gd"
 } ]
 _global_script_class_icons={
+"HSlideAndSpin": "",
+"NumberEdit": "",
 "VisualShaderNodeCellularNoise2D": "",
 "VisualShaderNodeCellularNoise2D_2X2": "",
 "VisualShaderNodeCellularNoise3D": "",
@@ -179,9 +191,9 @@ _global_script_class_icons={
 config/name="Worlds"
 config/description="A tool to procedurally generate 2D planet sprites."
 run/main_scene="res://Creator/CreationScene.tscn"
-boot_splash/image="res://Icons/boot.png"
+boot_splash/image="res://GUI/Icons/boot.png"
 boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 1 )
-config/icon="res://Icons/PlanetSprite.png"
+config/icon="res://GUI/Icons/PlanetSprite.png"
 config/windows_native_icon="res://Icons/worlds.ico.ico"
 
 [autoload]

@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
+
+[node name="GUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_bottom = 1.0
+margin_right = 8.0
+rect_min_size = Vector2( 320, 0 )
+tab_align = 0
+drag_to_rearrange_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Generation" type="VBoxContainer" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="PlanetType" type="OptionButton" parent="TabContainer/Generation"]
+margin_right = 312.0
+margin_bottom = 20.0
+text = "Earth Like"
+items = [ "Empty", null, false, 0, null, "Earth Like", null, false, 1, null ]
+selected = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Generation"]
+margin_top = 24.0
+margin_right = 312.0
+margin_bottom = 764.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Generation/ScrollContainer"]
+margin_right = 312.0
+margin_bottom = 740.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 54
+
+[node name="Colors" type="Control" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Colors"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Colors/ScrollContainer"]
+margin_right = 312.0
+margin_bottom = 764.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 54
+
+[node name="Options" type="Control" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Options"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Options/ScrollContainer"]
+margin_right = 312.0
+margin_bottom = 764.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="item_selected" from="TabContainer/Generation/PlanetType" to="." method="_on_PlanetType_item_selected"]

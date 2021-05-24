@@ -5,15 +5,15 @@ enum light_modes {DIRECT, INDIRECT}
 
 var light_mode:int = 1 setget set_light_mode,get_light_mode
 
-var land_noise:NoiseTexture = preload("res://Noise/LandNoiseTexture.tres")
-var ocean_noise:NoiseTexture = preload("res://Noise/OceanNoiseTexture.tres")
-var mask_noise:NoiseTexture = preload("res://Noise/LandMaskNoiseTexture.tres")
+var land_noise:NoiseTexture
+var ocean_noise:NoiseTexture
+var mask_noise:NoiseTexture 
 
-var land_gradient:GradientTexture = preload("res://Gradients/LandGradientTexture.tres")
-var ocean_gradient:GradientTexture = preload("res://Gradients/OceanGradientTexture.tres")
-var mask_gradient:GradientTexture = preload("res://Gradients/LandBaseGradientTexture.tres")
+var land_gradient:GradientTexture 
+var ocean_gradient:GradientTexture 
+var mask_gradient:GradientTexture 
 
-var environment:Environment = preload("res://Creator/Environment.tres")
+var environment:Environment 
 
 var creator_scene
 var atmosphere

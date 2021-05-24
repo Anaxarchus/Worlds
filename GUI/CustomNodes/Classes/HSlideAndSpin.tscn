@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/CustomNodes/Classes/HSlideAndSpin.gd" type="Script" id=1]
+
+[node name="HSlideAndSpin" type="HBoxContainer"]
+margin_top = 46.0
+margin_right = 1600.0
+margin_bottom = 70.0
+alignment = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 649.0
+margin_top = 5.0
+margin_right = 749.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+text = "Octaves"
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 753.0
+margin_right = 873.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 120, 0 )
+
+[node name="SpinBox" type="SpinBox" parent="."]
+margin_left = 877.0
+margin_right = 951.0
+margin_bottom = 24.0
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="SpinBox" to="." method="_on_SpinBox_value_changed"]
