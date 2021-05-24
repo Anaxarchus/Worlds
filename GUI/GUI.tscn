@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Icons/ImageIcon.png" type="Texture" id=2]
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
@@ -32,7 +33,7 @@ margin_bottom = -4.0
 margin_right = 312.0
 margin_bottom = 20.0
 text = "Earth Like"
-items = [ "Empty", null, false, 0, null, "Earth Like", null, false, 1, null ]
+items = [ "Empty", null, false, 0, null, "Earth Like", null, false, 1, null, "Gaseous", null, false, 2, null ]
 selected = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Generation"]
@@ -104,4 +105,15 @@ margin_bottom = 764.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Capture" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -80.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 80.0
+texture_normal = ExtResource( 2 )
+expand = true
+
 [connection signal="item_selected" from="TabContainer/Generation/PlanetType" to="." method="_on_PlanetType_item_selected"]
+[connection signal="pressed" from="Capture" to="." method="_on_Capture_pressed"]

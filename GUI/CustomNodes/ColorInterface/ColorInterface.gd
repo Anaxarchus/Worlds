@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+signal color_interface_color_changed
 
 export(GradientTexture) var color_map setget set_color_map
 var offset_interface = preload("res://GUI/CustomNodes/ColorInterface/OffsetInterface.tscn")
@@ -94,3 +95,4 @@ func _on_OffsetInterface_blend_changed(index, value):
 
 func _on_OffsetInterface_color_changed(index, color):
     set_offset_color(index, color)
+    emit_signal("color_interface_color_changed")

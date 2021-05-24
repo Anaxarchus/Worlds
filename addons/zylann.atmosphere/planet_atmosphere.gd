@@ -60,7 +60,6 @@ func _init():
 
 
 func _ready():
-    Creator.atmosphere = self
     var mat = _mesh_instance.material_override
     mat.set_shader_param("u_planet_radius", planet_radius)
     mat.set_shader_param("u_atmosphere_height", atmosphere_height)
