@@ -4,8 +4,8 @@
 background_color = Color( 0, 0, 0, 0 )
 background_energy = 0.0
 fog_enabled = true
-fog_color = Color( 0.176471, 0.509804, 0.847059, 1 )
+fog_color = Color( 0.305882, 0.513726, 0.717647, 1 )
 fog_depth_begin = 1.0
 fog_depth_end = 2.0
-fog_depth_curve = 1.31951
+fog_depth_curve = 0.757861
 adjustment_enabled = true
