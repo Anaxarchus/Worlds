@@ -4,6 +4,7 @@ signal atmosphere_color_changed(color)
 signal atmosphere_visibility_changed(value)
 signal planet_type_changed(value)
 signal export_sprite(sprite_name, save_path)
+signal cloud_visibility_changed(value)
 
 var noise_interface = preload("res://GUI/CustomNodes/NoiseInterface/NoiseInterface.tscn")
 var color_interface = preload("res://GUI/CustomNodes/ColorInterface/ColorInterface.tscn")
@@ -14,6 +15,7 @@ onready var node_options = $TabContainer/Options/ScrollContainer/VBoxContainer
 
 var atmosphere_color_map:GradientTexture
 var file_browser:FileDialog
+var shader:VisualShader
 
 
 
@@ -39,6 +41,11 @@ func configure_for_earth_like():
     cloud_noise.noise = load("res://Resources/PlanetTextures/Earth/Noise/CloudNoiseTexture.tres")
     node_generation.add_child(cloud_noise)
     
+    var cloud_color = color_interface.instance()
+    cloud_color.color_map = load("res://Resources/PlanetTextures/Earth/Gradients/CloudGradientTexture.tres")
+    cloud_color.skip_first = false
+    node_colors.add_child(cloud_color)
+    
     var land_color = color_interface.instance()
     land_color.color_map = load("res://Resources/PlanetTextures/Earth/Gradients/LandGradientTexture.tres")
     node_colors.add_child(land_color)
@@ -50,6 +57,10 @@ func configure_for_earth_like():
     
     atmosphere_color_map = ocean_color.color_map
     emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    
+    $TabContainer/Options/ScrollContainer/VBoxContainer/Clouds.disabled = false
+    
+    $TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere.pressed = true
 
 
 func configure_for_gas():
@@ -64,6 +75,8 @@ func configure_for_gas():
     
     atmosphere_color_map = gas_color.color_map
     emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    
+    $TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere.pressed = true
 
 
 func configure_for_ice():
@@ -71,7 +84,18 @@ func configure_for_ice():
 
 
 func configure_for_rock():
-    pass
+    var rock_noise = noise_interface.instance()
+    rock_noise.noise = load("res://Resources/PlanetTextures/Rocky/Noise/RockyNoiseTexture.tres")
+    node_generation.add_child(rock_noise)
+    
+    var rock_color = color_interface.instance()
+    rock_color.color_map = load("res://Resources/PlanetTextures/Rocky/Gradients/RockyGradientTexture.tres")
+    rock_color.skip_first = false
+    node_colors.add_child(rock_color)
+    
+    atmosphere_color_map = rock_color.color_map
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    $TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere.pressed = false
 
 
 func clear_menus():
@@ -79,6 +103,7 @@ func clear_menus():
         child.queue_free()
     for child in node_colors.get_children():
         child.queue_free()
+    $TabContainer/Options/ScrollContainer/VBoxContainer/Clouds.disabled = true
     
 
 
@@ -113,3 +138,11 @@ func _on_FileDialog_confirmed():
         file = file.split(".")[0]
     file_browser.queue_free()
     emit_signal("export_sprite", file, path)
+
+
+func _on_Clouds_toggled(button_pressed):
+    emit_signal("cloud_visibility_changed", button_pressed)
+
+
+func _on_Atmosphere_toggled(button_pressed):
+    emit_signal("atmosphere_visibility_changed", button_pressed)

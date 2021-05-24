@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=57 format=2]
+[gd_resource type="VisualShader" load_steps=59 format=2]
 
 [ext_resource path="res://Resources/PlanetTextures/Earth/Gradients/CloudGradientTexture.tres" type="Texture" id=1]
 [ext_resource path="res://Resources/PlanetTextures/Earth/Noise/LandMaskNoiseTexture.tres" type="Texture" id=2]
@@ -159,10 +159,17 @@ output_port_for_preview = 0
 default_input_values = [ 0, 0.0, 1, 0.25 ]
 operator = 2
 
+[sub_resource type="VisualShaderNodeSwitch" id=48]
+default_input_values = [ 0, true, 1, Vector3( 1, 1, 1 ), 2, Vector3( 0, 0, 0 ) ]
+
+[sub_resource type="VisualShaderNodeBooleanUniform" id=49]
+uniform_name = "Clouds"
+
 [resource]
 code = "shader_type spatial;
 render_mode specular_schlick_ggx;
 
+uniform bool Clouds;
 uniform float Cloud_Stringiness;
 uniform sampler2D tex_frg_24;
 uniform sampler2D tex_frg_25;
@@ -189,6 +196,9 @@ void vertex() {
 }
 
 void fragment() {
+// BooleanUniform:75
+	bool n_out75p0 = Clouds;
+
 // Input:28
 	vec3 n_out28p0 = vec3(UV, 0.0);
 
@@ -216,6 +226,18 @@ void fragment() {
 	vec4 tex_frg_25_read = texture(tex_frg_25, n_out24p0.xy);
 	vec3 n_out25p0 = tex_frg_25_read.rgb;
 	float n_out25p1 = tex_frg_25_read.a;
+
+// VectorSwitch:74
+	vec3 n_in74p2 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out74p0;
+	if(n_out75p0)
+	{
+		n_out74p0 = n_out25p0;
+	}
+	else
+	{
+		n_out74p0 = n_in74p2;
+	}
 
 // Texture:42
 	vec4 tex_frg_42_read = texture(tex_frg_42, UV.xy);
@@ -407,7 +429,7 @@ void fragment() {
 	vec3 n_out34p0 = n_out13p0 + n_out14p0;
 
 // VectorOp:72
-	vec3 n_out72p0 = n_out25p0 + n_out34p0;
+	vec3 n_out72p0 = n_out74p0 + n_out34p0;
 
 // VectorFunc:19
 	vec3 n_out19p0 = vec3(1.0, 1.0, 1.0) - n_out35p0;
@@ -451,7 +473,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -1956, -402 )
+graph_offset = Vector2( 284, -774 )
 nodes/vertex/0/position = Vector2( 640, 140 )
 nodes/fragment/0/position = Vector2( 1560, 240 )
 nodes/fragment/3/node = SubResource( 17 )
@@ -538,4 +560,8 @@ nodes/fragment/72/node = SubResource( 46 )
 nodes/fragment/72/position = Vector2( 1140, -160 )
 nodes/fragment/73/node = SubResource( 47 )
 nodes/fragment/73/position = Vector2( 1320, 320 )
-nodes/fragment/connections = PoolIntArray( 19, 0, 17, 0, 17, 0, 20, 0, 20, 0, 0, 3, 17, 0, 0, 14, 24, 0, 25, 0, 27, 0, 24, 0, 28, 0, 27, 0, 29, 0, 32, 0, 31, 0, 32, 1, 30, 0, 32, 2, 32, 0, 27, 1, 3, 0, 33, 0, 35, 0, 19, 0, 4, 0, 35, 2, 36, 0, 35, 1, 37, 0, 35, 0, 35, 0, 49, 0, 14, 0, 34, 1, 33, 0, 51, 1, 49, 0, 51, 0, 51, 0, 52, 0, 33, 0, 47, 1, 47, 0, 13, 0, 52, 0, 55, 1, 46, 0, 55, 0, 55, 0, 56, 0, 56, 0, 47, 0, 42, 0, 46, 0, 43, 0, 57, 0, 3, 0, 61, 1, 3, 0, 65, 0, 35, 0, 65, 1, 61, 0, 14, 0, 57, 0, 59, 1, 58, 0, 59, 0, 65, 0, 66, 0, 66, 0, 58, 0, 59, 0, 61, 0, 13, 0, 34, 0, 23, 0, 0, 10, 35, 0, 22, 0, 21, 0, 23, 0, 25, 0, 72, 0, 34, 0, 72, 1, 35, 0, 3, 0, 22, 0, 73, 0, 73, 0, 0, 5, 72, 0, 0, 0 )
+nodes/fragment/74/node = SubResource( 48 )
+nodes/fragment/74/position = Vector2( 1260, -480 )
+nodes/fragment/75/node = SubResource( 49 )
+nodes/fragment/75/position = Vector2( 1040, -700 )
+nodes/fragment/connections = PoolIntArray( 19, 0, 17, 0, 17, 0, 20, 0, 20, 0, 0, 3, 17, 0, 0, 14, 24, 0, 25, 0, 27, 0, 24, 0, 28, 0, 27, 0, 29, 0, 32, 0, 31, 0, 32, 1, 30, 0, 32, 2, 32, 0, 27, 1, 3, 0, 33, 0, 35, 0, 19, 0, 4, 0, 35, 2, 36, 0, 35, 1, 37, 0, 35, 0, 35, 0, 49, 0, 14, 0, 34, 1, 33, 0, 51, 1, 49, 0, 51, 0, 51, 0, 52, 0, 33, 0, 47, 1, 47, 0, 13, 0, 52, 0, 55, 1, 46, 0, 55, 0, 55, 0, 56, 0, 56, 0, 47, 0, 42, 0, 46, 0, 43, 0, 57, 0, 3, 0, 61, 1, 3, 0, 65, 0, 35, 0, 65, 1, 61, 0, 14, 0, 57, 0, 59, 1, 58, 0, 59, 0, 65, 0, 66, 0, 66, 0, 58, 0, 59, 0, 61, 0, 13, 0, 34, 0, 23, 0, 0, 10, 35, 0, 22, 0, 21, 0, 23, 0, 34, 0, 72, 1, 35, 0, 3, 0, 22, 0, 73, 0, 73, 0, 0, 5, 72, 0, 0, 0, 25, 0, 74, 1, 74, 0, 72, 0, 75, 0, 74, 0 )

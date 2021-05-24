@@ -1,0 +1,11 @@
+[gd_resource type="NoiseTexture" load_steps=2 format=2]
+
+[ext_resource path="res://Resources/PlanetTextures/Rocky/Noise/RockyNoise.tres.tres" type="OpenSimplexNoise" id=1]
+
+[resource]
+width = 1024
+height = 1024
+seamless = true
+as_normalmap = true
+bump_strength = 12.5
+noise = ExtResource( 1 )

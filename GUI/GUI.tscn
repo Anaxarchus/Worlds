@@ -22,6 +22,7 @@ __meta__ = {
 }
 
 [node name="Generation" type="VBoxContainer" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -33,7 +34,7 @@ margin_bottom = -4.0
 margin_right = 312.0
 margin_bottom = 20.0
 text = "Earth Like"
-items = [ "Empty", null, false, 0, null, "Earth Like", null, false, 1, null, "Gaseous", null, false, 2, null ]
+items = [ "Empty", null, false, 0, null, "Earth Like", null, false, 1, null, "Gaseous", null, false, 2, null, "Rocky", null, false, 3, null ]
 selected = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Generation"]
@@ -81,7 +82,6 @@ size_flags_vertical = 3
 custom_constants/separation = 54
 
 [node name="Options" type="Control" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -105,6 +105,19 @@ margin_bottom = 764.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Clouds" type="CheckButton" parent="TabContainer/Options/ScrollContainer/VBoxContainer"]
+margin_right = 312.0
+margin_bottom = 40.0
+pressed = true
+text = "Clouds"
+
+[node name="Atmosphere" type="CheckButton" parent="TabContainer/Options/ScrollContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 312.0
+margin_bottom = 84.0
+pressed = true
+text = "Atmosphere"
+
 [node name="Capture" type="TextureButton" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -114,6 +127,11 @@ margin_right = -16.0
 margin_bottom = 80.0
 texture_normal = ExtResource( 2 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="item_selected" from="TabContainer/Generation/PlanetType" to="." method="_on_PlanetType_item_selected"]
+[connection signal="toggled" from="TabContainer/Options/ScrollContainer/VBoxContainer/Clouds" to="." method="_on_Clouds_toggled"]
+[connection signal="toggled" from="TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere" to="." method="_on_Atmosphere_toggled"]
 [connection signal="pressed" from="Capture" to="." method="_on_Capture_pressed"]
