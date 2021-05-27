@@ -6,6 +6,7 @@
 margin_top = 46.0
 margin_right = 1600.0
 margin_bottom = 70.0
+mouse_filter = 2
 alignment = 1
 script = ExtResource( 1 )
 __meta__ = {
@@ -14,17 +15,20 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 margin_left = 649.0
-margin_top = 5.0
 margin_right = 749.0
-margin_bottom = 19.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
+mouse_filter = 1
+size_flags_vertical = 3
 text = "Octaves"
+valign = 1
 
 [node name="HSlider" type="HSlider" parent="."]
 margin_left = 753.0
 margin_right = 873.0
-margin_bottom = 16.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 120, 0 )
+size_flags_vertical = 3
 
 [node name="SpinBox" type="SpinBox" parent="."]
 margin_left = 877.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Resources/Materials/Rocky.material" type="Material" id=1]
+[ext_resource path="res://Resources/Materials/Empty.tres" type="Material" id=1]
 [ext_resource path="res://Creator/CreationScene.gd" type="Script" id=2]
 [ext_resource path="res://Creator/Environment.tres" type="Environment" id=3]
 [ext_resource path="res://addons/zylann.atmosphere/planet_atmosphere.tscn" type="PackedScene" id=4]
@@ -16,7 +16,6 @@ rings = 256
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 
@@ -24,6 +23,9 @@ material/0 = ExtResource( 1 )
 visible = false
 atmosphere_height = 0.088
 sun_path = NodePath("../DirectionalLight")
+shader_params/u_day_color0 = Color( 0.290196, 0.388235, 0.921569, 1 )
+shader_params/u_night_color0 = Color( 0.709804, 0.639216, 0.964706, 1 )
+shader_params/u_night_color1 = Color( 1, 1, 1, 1 )
 shader_params/u_density = 1.153
 
 [node name="CameraPivot" type="Spatial" parent="."]
