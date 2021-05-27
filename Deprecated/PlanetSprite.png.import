@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PlanetSprite.png-711af174fe5011b1e077401ff1bcb041.stex"
+path="res://.import/PlanetSprite.png-af7f0352ca198ce4828a4d76e98b4928.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PlanetSprite.png"
-dest_files=[ "res://.import/PlanetSprite.png-711af174fe5011b1e077401ff1bcb041.stex" ]
+source_file="res://Deprecated/PlanetSprite.png"
+dest_files=[ "res://.import/PlanetSprite.png-af7f0352ca198ce4828a4d76e98b4928.stex" ]
 
 [params]
 

@@ -16,7 +16,6 @@ onready var node_colors = $TabContainer/Colors/ScrollContainer/VBoxContainer
 onready var node_options = $TabContainer/Options/ScrollContainer/VBoxContainer
 
 var atmosphere_color_map:GradientTexture
-var file_browser:FileDialog
 var shader:VisualShader
 
 
@@ -122,28 +121,7 @@ func _on_color_interface_color_changed():
 
 
 func _on_Capture_pressed():
-    file_browser = FileDialog.new()
-    add_child(file_browser)
-    file_browser.mode = file_browser.MODE_SAVE_FILE
-    file_browser.access = file_browser.ACCESS_FILESYSTEM
-    file_browser.window_title = "Export"
-    file_browser.dialog_text = "Export Sprite as .png"
-    file_browser.current_file = "PlanetSprite.png"
-    file_browser.resizable = true
-    file_browser.connect("confirmed", self, "_on_FileDialog_confirmed")
-    file_browser.rect_size = Vector2(700,500)
-    file_browser.popup_centered()
-
-
-func _on_FileDialog_confirmed():
-    var path = file_browser.current_dir
-    var file = file_browser.current_file
-    if file == '':
-        file = "PlanetSprite"
-    elif "." in file:
-        file = file.split(".")[0]
-    file_browser.queue_free()
-    emit_signal("export_sprite", file, path)
+    $Export.popup_centered()
 
 
 func _on_Clouds_toggled(button_pressed):
@@ -177,3 +155,7 @@ func _on_BottomIn_value_changed(value):
 func _on_Brightness_value_changed(value):
     Creator.atmosphere_interior_brightness = value
     emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+
+
+func _on_Export_export_sprite(sprite_name, path, style, size):
+    emit_signal("export_sprite", sprite_name, path, style, size)

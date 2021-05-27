@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Icons/ImageIcon.png" type="Texture" id=2]
 [ext_resource path="res://GUI/CustomNodes/Classes/HSlideAndSpin.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/Theme.tres" type="Theme" id=4]
+[ext_resource path="res://GUI/Export.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0823529, 0.0588235, 0.0901961, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.235294, 0.203922, 0.247059, 1 )
+border_blend = true
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
@@ -196,6 +206,168 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Export" type="PopupPanel" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -350.5
+margin_top = -208.5
+margin_right = 350.5
+margin_bottom = 208.5
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Export"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Export/VBoxContainer2"]
+margin_right = 701.0
+margin_bottom = 22.0
+text = "Export Options"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Export/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 701.0
+margin_bottom = 375.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Export/VBoxContainer2/CenterContainer"]
+margin_left = 190.0
+margin_top = 92.0
+margin_right = 510.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 320, 0 )
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 38.0
+alignment = 2
+
+[node name="Label" type="Label" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer4"]
+margin_top = 8.0
+margin_right = 158.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Name:"
+
+[node name="Name" type="LineEdit" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 162.0
+margin_right = 320.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+text = "PlanetSprite"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 320.0
+margin_bottom = 80.0
+alignment = 2
+
+[node name="Label" type="Label" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_top = 8.0
+margin_right = 158.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Size:"
+
+[node name="Size" type="SpinBox" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 162.0
+margin_right = 320.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 2000.0
+value = 500.0
+align = 1
+suffix = "Pixels"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 320.0
+margin_bottom = 122.0
+alignment = 2
+
+[node name="Label" type="Label" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 8.0
+margin_right = 158.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Export Style:"
+
+[node name="Style" type="OptionButton" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 162.0
+margin_right = 320.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+text = "Default"
+align = 1
+items = [ "Default", null, false, 0, null, "Endless Sky", null, false, 1, null ]
+selected = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer"]
+margin_top = 126.0
+margin_right = 320.0
+margin_bottom = 164.0
+alignment = 2
+
+[node name="Label" type="Label" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 8.0
+margin_right = 158.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Export Path:"
+
+[node name="PathButton" type="Button" parent="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 162.0
+margin_right = 320.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+text = "Click to Path"
+clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Export/VBoxContainer2"]
+margin_top = 379.0
+margin_right = 701.0
+margin_bottom = 417.0
+alignment = 2
+
+[node name="Cancel" type="Button" parent="Export/VBoxContainer2/HBoxContainer"]
+margin_left = 537.0
+margin_right = 617.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 80, 0 )
+text = "Cancel"
+
+[node name="Export" type="Button" parent="Export/VBoxContainer2/HBoxContainer"]
+margin_left = 621.0
+margin_right = 701.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 80, 0 )
+disabled = true
+text = "Export"
+
 [connection signal="item_selected" from="TabContainer/Generation/PlanetType" to="." method="_on_PlanetType_item_selected"]
 [connection signal="toggled" from="TabContainer/Options/ScrollContainer/VBoxContainer/Clouds" to="." method="_on_Clouds_toggled"]
 [connection signal="toggled" from="TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere" to="." method="_on_Atmosphere_toggled"]
@@ -205,3 +377,10 @@ __meta__ = {
 [connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/BottomIn" to="." method="_on_BottomIn_value_changed"]
 [connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/Brightness" to="." method="_on_Brightness_value_changed"]
 [connection signal="pressed" from="Capture" to="." method="_on_Capture_pressed"]
+[connection signal="export_sprite" from="Export" to="." method="_on_Export_export_sprite"]
+[connection signal="text_entered" from="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer4/Name" to="Export" method="_on_Name_text_entered"]
+[connection signal="value_changed" from="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer/Size" to="Export" method="_on_Size_value_changed"]
+[connection signal="item_selected" from="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer2/Style" to="Export" method="_on_Style_item_selected"]
+[connection signal="pressed" from="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer3/PathButton" to="Export" method="_on_PathButton_pressed"]
+[connection signal="pressed" from="Export/VBoxContainer2/HBoxContainer/Cancel" to="Export" method="_on_Cancel_pressed"]
+[connection signal="pressed" from="Export/VBoxContainer2/HBoxContainer/Export" to="Export" method="_on_Export_pressed"]
