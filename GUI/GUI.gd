@@ -22,11 +22,11 @@ var shader:VisualShader
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/BottomOut.value = Creator.atmosphere_day_outer
-    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/BottomIn.value = Creator.atmosphere_day_inner
-    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/TopOut.value = Creator.atmosphere_night_outer
-    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/TopIn.value = Creator.atmosphere_night_inner
-    $TabContainer/Options/ScrollContainer/VBoxContainer/VBoxContainer/Brightness.value = Creator.atmosphere_interior_brightness
+    $TabContainer/Options/ScrollContainer/VBoxContainer/AtmosphereSettings/BottomOut.value = Creator.atmosphere_day_outer
+    $TabContainer/Options/ScrollContainer/VBoxContainer/AtmosphereSettings/BottomIn.value = Creator.atmosphere_day_inner
+    $TabContainer/Options/ScrollContainer/VBoxContainer/AtmosphereSettings/TopOut.value = Creator.atmosphere_night_outer
+    $TabContainer/Options/ScrollContainer/VBoxContainer/AtmosphereSettings/TopIn.value = Creator.atmosphere_night_inner
+    $TabContainer/Options/ScrollContainer/VBoxContainer/AtmosphereSettings/Brightness.value = Creator.atmosphere_interior_brightness
 
 
 func configure_for_earth_like():
