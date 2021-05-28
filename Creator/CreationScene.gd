@@ -105,3 +105,22 @@ func _on_GUI_cloud_visibility_changed(value):
 
 func _on_GUI_atmosphere_visibility_changed(value):
     set_atmosphere(value)
+
+
+func _on_GUI_light_color_changed(color):
+    for each in $Light.get_children():
+        each.light_color = color
+
+
+func _on_GUI_light_intensity_changed(intensity):
+    for each in $Light.get_children():
+        each.light_energy = intensity
+
+
+func _on_GUI_light_rotation_changed(value):
+    $Light.rotation = value
+
+
+func _on_GUI_light_specular_changed(specular):
+    for each in $Light.get_children():
+        each.light_specular = specular

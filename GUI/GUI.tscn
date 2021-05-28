@@ -44,7 +44,7 @@ margin_right = -1.0
 margin_bottom = -1.0
 
 [node name="PlanetType" type="OptionButton" parent="TabContainer/Generation"]
-margin_right = 318.0
+margin_right = 332.0
 margin_bottom = 38.0
 text = "Empty"
 items = [ "Empty", null, false, 0, null, "Earth Like", null, false, 1, null, "Gaseous", null, false, 2, null, "Rocky", null, false, 3, null ]
@@ -52,7 +52,7 @@ selected = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Generation"]
 margin_top = 42.0
-margin_right = 318.0
+margin_right = 332.0
 margin_bottom = 766.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -62,7 +62,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Generation/ScrollContainer"]
-margin_right = 318.0
+margin_right = 332.0
 margin_bottom = 724.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -148,7 +148,7 @@ align = 1
 margin_top = 26.0
 margin_right = 332.0
 margin_bottom = 64.0
-title = "Top Outer"
+title = "Night Outer"
 max_value = 2.0
 min_value = 0.01
 step = 0.01
@@ -158,7 +158,7 @@ tool_tip = "Modulate amount for top most outer portion of Atmosphere "
 margin_top = 68.0
 margin_right = 332.0
 margin_bottom = 106.0
-title = "Top Inner"
+title = "Night Inner"
 max_value = 2.0
 min_value = 0.01
 step = 0.01
@@ -168,7 +168,7 @@ tool_tip = "Modulate amount for top most inner portion of Atmosphere "
 margin_top = 110.0
 margin_right = 332.0
 margin_bottom = 148.0
-title = "Bottom Outer"
+title = "Day Outer"
 max_value = 2.0
 min_value = 0.01
 step = 0.01
@@ -178,7 +178,7 @@ tool_tip = "Modulate amount for bottom most outer portion of Atmosphere "
 margin_top = 152.0
 margin_right = 332.0
 margin_bottom = 190.0
-title = "Bottom Inner"
+title = "Day Inner"
 max_value = 2.0
 min_value = 0.01
 step = 0.01
@@ -197,7 +197,71 @@ tool_tip = "Modulate amount for interior brightness  "
 [node name="LightingSettings" type="VBoxContainer" parent="TabContainer/Options/ScrollContainer/VBoxContainer"]
 margin_top = 340.0
 margin_right = 332.0
-margin_bottom = 340.0
+margin_bottom = 572.0
+
+[node name="Label" type="Label" parent="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings"]
+margin_right = 332.0
+margin_bottom = 22.0
+text = "Light Settings"
+align = 1
+valign = 1
+
+[node name="yRot" parent="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings" instance=ExtResource( 3 )]
+margin_top = 26.0
+margin_right = 332.0
+margin_bottom = 64.0
+title = "Y-Rot"
+max_value = 180.0
+min_value = -180.0
+step = 0.1
+
+[node name="xRot" parent="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings" instance=ExtResource( 3 )]
+margin_top = 68.0
+margin_right = 332.0
+margin_bottom = 106.0
+title = "X-Rot"
+max_value = 180.0
+min_value = -180.0
+step = 0.1
+
+[node name="Intensity" parent="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings" instance=ExtResource( 3 )]
+margin_top = 110.0
+margin_right = 332.0
+margin_bottom = 148.0
+title = "Intensity"
+value = 2.0
+max_value = 16.0
+min_value = 0.1
+step = 0.1
+
+[node name="Specular" parent="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings" instance=ExtResource( 3 )]
+margin_top = 152.0
+margin_right = 332.0
+margin_bottom = 190.0
+title = "Specular"
+max_value = 1.0
+step = 0.001
+
+[node name="LightColor" type="HBoxContainer" parent="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings"]
+margin_top = 194.0
+margin_right = 332.0
+margin_bottom = 232.0
+
+[node name="Label" type="Label" parent="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor"]
+margin_top = 8.0
+margin_right = 228.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Light Color"
+
+[node name="LightColor" type="ColorPickerButton" parent="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor"]
+margin_left = 232.0
+margin_right = 332.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 100, 0 )
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
 
 [node name="Capture" type="TextureButton" parent="."]
 modulate = Color( 0.235294, 0.203922, 0.247059, 1 )
@@ -386,6 +450,11 @@ text = "Export"
 [connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/AtmosphereSettings/BottomOut" to="." method="_on_BottomOut_value_changed"]
 [connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/AtmosphereSettings/BottomIn" to="." method="_on_BottomIn_value_changed"]
 [connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/AtmosphereSettings/Brightness" to="." method="_on_Brightness_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/yRot" to="." method="_on_yRot_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/xRot" to="." method="_on_xRot_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/Intensity" to="." method="_on_Intensity_value_changed"]
+[connection signal="value_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/Specular" to="." method="_on_Specular_value_changed"]
+[connection signal="color_changed" from="TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor" to="." method="_on_LightColor_color_changed"]
 [connection signal="pressed" from="Capture" to="." method="_on_Capture_pressed"]
 [connection signal="export_sprite" from="Export" to="." method="_on_Export_export_sprite"]
 [connection signal="text_entered" from="Export/VBoxContainer2/CenterContainer/VBoxContainer/HBoxContainer4/Name" to="Export" method="_on_Name_text_entered"]

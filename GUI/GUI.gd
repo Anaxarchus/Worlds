@@ -5,6 +5,10 @@ signal atmosphere_visibility_changed(value)
 signal planet_type_changed(value)
 signal export_sprite(sprite_name, save_path)
 signal cloud_visibility_changed(value)
+signal light_rotation_changed(value)
+signal light_intensity_changed(intensity)
+signal light_specular_changed(specular)
+signal light_color_changed(color)
 
 export(NodePath) var node_atmosphere
 
@@ -17,6 +21,9 @@ onready var node_options = $TabContainer/Options/ScrollContainer/VBoxContainer
 
 var atmosphere_color_map:GradientTexture
 var shader:VisualShader
+
+var light_x:float
+var light_y:float
 
 
 
@@ -61,7 +68,7 @@ func configure_for_earth_like():
     ocean_color.connect("color_interface_color_changed", self, "_on_color_interface_color_changed")
     
     atmosphere_color_map = ocean_color.color_map
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
     
     $TabContainer/Options/ScrollContainer/VBoxContainer/Clouds.disabled = false
     
@@ -79,7 +86,7 @@ func configure_for_gas():
     gas_color.connect("color_interface_color_changed", self, "_on_color_interface_color_changed")
     
     atmosphere_color_map = gas_color.color_map
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
     
     $TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere.pressed = true
 
@@ -99,7 +106,7 @@ func configure_for_rock():
     node_colors.add_child(rock_color)
     
     atmosphere_color_map = rock_color.color_map
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
     $TabContainer/Options/ScrollContainer/VBoxContainer/Atmosphere.pressed = true
 
 
@@ -117,7 +124,7 @@ func _on_PlanetType_item_selected(index):
 
 
 func _on_color_interface_color_changed():
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
 
 
 func _on_Capture_pressed():
@@ -134,28 +141,51 @@ func _on_Atmosphere_toggled(button_pressed):
 
 func _on_TopOut_value_changed(value):
     Creator.atmosphere_night_outer = value
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
 
 
 func _on_TopIn_value_changed(value):
     Creator.atmosphere_night_inner = value
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
 
 
 func _on_BottomOut_value_changed(value):
     Creator.atmosphere_day_outer = value
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
 
 
 func _on_BottomIn_value_changed(value):
     Creator.atmosphere_day_inner = value
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
 
 
 func _on_Brightness_value_changed(value):
     Creator.atmosphere_interior_brightness = value
-    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map))
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
 
 
 func _on_Export_export_sprite(sprite_name, path, style, size):
     emit_signal("export_sprite", sprite_name, path, style, size)
+
+
+func _on_yRot_value_changed(value):
+    light_y = deg2rad(value)
+    emit_signal("light_rotation_changed", Vector3(light_x, light_y, 0))
+
+
+func _on_xRot_value_changed(value):
+    light_x = deg2rad(value)
+    emit_signal("light_rotation_changed", Vector3(light_x, light_y, 0))
+
+
+func _on_Intensity_value_changed(value):
+    emit_signal("light_intensity_changed", value)
+
+
+func _on_Specular_value_changed(value):
+    emit_signal("light_specular_changed", value)
+
+
+func _on_LightColor_color_changed(color):
+    emit_signal("light_color_changed", color)
+    emit_signal("atmosphere_color_changed", Creator.get_average_gradient_color(atmosphere_color_map)*$TabContainer/Options/ScrollContainer/VBoxContainer/LightingSettings/LightColor/LightColor.color)
