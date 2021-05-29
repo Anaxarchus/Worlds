@@ -6,3 +6,4 @@ An open source 2D planet sprite generator.
 ![GitHub Logo](/ScreenShots/rocky.png)
 ![GitHub Logo](/ScreenShots/RockyMoon.png)
 ![GitHub Logo](/ScreenShots/PlanetSprite.png)
+![GitHub Logo](/ScreenShots/Lighting.png)
